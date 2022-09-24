@@ -10,6 +10,7 @@
       //Morgan
 //each element of the list would be an object within the list object
 
+//lucas commented 202209242046
 ///basic structure of the list:
 const list = { 
   1 : {

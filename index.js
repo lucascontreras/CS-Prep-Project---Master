@@ -4,7 +4,7 @@
       //Truman
     //read (print all the of the list)
       //Queen
-    //update (modify an element of the list)
+    //function to calculate days left until due date
       //Lucas
     //delete (removes an element)
       //Morgan
@@ -14,6 +14,7 @@
 //features ideas:
   //due date
     //sort criteria
+    //how many days left until due calculates (higher order function)
   //alerts
     //generate alerts when close to the due date
   //categories
@@ -22,26 +23,49 @@
     //sort list items by priority
   //responsible
     //assign item to a person
-
+//sdfgdfg
 ///basic structure of the list:
 const list = { 
   1 : {
-    text : 'Go to bed',
-    category : 'home'
+    text : "Buy brother's birthday present",
+    category : 'home',
+    due : '2022/09/26'
   },
   2 : {
-    text : 'Brush teeth',
-    category : 'home'
+    text : "Apply to Codesmith",
+    category : 'home',
+    due : '2022/09/26'
   }
 }
 
+//use this as you need in the prompts
+const newLine = "\r\n"
+
+//initial prompt
+let initialPrompt = newLine
+initialPrompt += "Select an action:" + newLine
+initialPrompt += "[c] Create: add a new element to the list" + newLine
+initialPrompt += "[u] Update: modify an element of the list" + newLine
+initialPrompt += "[d] Delete: remove an element from the list" + newLine
+
+let updateColumnPrompt = `${newLine}Select a column to modify${newLine}`
+updateColumnPrompt += `[a] text${newLine}`
+updateColumnPrompt += `[b] category${newLine}`
+updateColumnPrompt += `[c] due date${newLine}`
+
 //function u (Update)
 const u = (itemToBeUpdated) => {
-  list[itemToBeUpdated]['text'] = prompt("Enter the new text for the element " + itemToBeUpdated)
+  let columnInput
+  while (true) {
+    console.log(updateColumnPrompt)
+    columnInput = prompt("Enter your selection")
+    if (['a', 'b', 'c'].includes(columnInput)) break
+    console.log(`${newLine}Error - please enter a correct value!`)
+  }
+  let columns = {a: 'text', b: 'category', c: 'due'}
+  list[itemToBeUpdated][columns[columnInput]] = prompt(`Enter the new ${columns[columnInput]} for the element ${itemToBeUpdated}`)
   console.log("Item " + itemToBeUpdated + " updated")
-  // ↓ replace this with Queen's function (read):
     console.table(list)
-  // ↑ replace this with Queen's function (read):
 }
 
 //create function
@@ -59,17 +83,6 @@ function c () {
   return result;
 }
 
-//use this as you need in the prompts
-const newLine = "\r\n"
-
-//initial prompt
-let initialPrompt = newLine
-initialPrompt += "Select an action:" + newLine
-initialPrompt += "[c] Create: add a new element to the list" + newLine
-initialPrompt += "[r] Read: print all the elements of the list" + newLine
-initialPrompt += "[u] Update: modify an element of the list" + newLine
-initialPrompt += "[d] Delete: remove an element from the list" + newLine
-
 //index that will determine if the "Your to do list:" message will be displayed
 let i = true;
 while (true) {
@@ -83,7 +96,7 @@ while (true) {
   console.log(initialPrompt)
   
   //determine operation to execute
-  const input = prompt("Enter your answer [c, r, u, d] here")
+  const input = prompt("Enter your answer [c, u, d] here")
   
   //update an element from the list
   if (input === "u") u(prompt("Which element do you want to update [" + Object.keys(list) + "]?"))

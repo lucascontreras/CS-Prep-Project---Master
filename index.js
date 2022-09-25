@@ -22,7 +22,7 @@
     //sort list items by priority
   //responsible
     //assign item to a person
-
+//sdfgdfg
 ///basic structure of the list:
 const list = { 
   1 : {

@@ -73,6 +73,7 @@ function c () {
   const lastKey = Number(keys[keys.length -1]);
   const newText = prompt('What would you like to add?');
   list[lastKey + 1] = { text : newText };
+  //test const
   /////////////////
   let result = "\r\n";
   for (key in list) {

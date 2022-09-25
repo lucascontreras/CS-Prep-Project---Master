@@ -35,8 +35,7 @@ const list = {
 }
 
 //function u (Update)
-const u = () => {
-  let itemToBeUpdated = prompt("Which element do you want to update [" + Object.keys(list) + "]?")
+const u = (itemToBeUpdated) => {
   list[itemToBeUpdated]['text'] = prompt("Enter the new text for the element " + itemToBeUpdated)
   console.log("Item " + itemToBeUpdated + " updated")
   // ↓ replace this with Queen's function (read):
@@ -71,24 +70,22 @@ initialPrompt += "[u] Update: modify an element of the list" + newLine
 initialPrompt += "[d] Delete: remove an element from the list" + newLine
 
 //index that will determine if the "Your to do list:" message will be displayed
-let i = 0;
+let i = true;
 while (true) {
   //only diplay this message the first time
-  if (!i) {
-    console.log("Your to do list:")
-    console.table(list)
-  }
+  if (i) console.log("Your to do list:")
+  if (i) console.table(list)
   
-  i++
+  i = false
   
   //initial prompt to select the action to be performed
   console.log(initialPrompt)
   
   //determine operation to execute
-  const input = prompt("Enter your answer [c, r, u, d] here:")
+  const input = prompt("Enter your answer [c, r, u, d] here")
   
   //update an element from the list
-  if (input === "u") u()
+  if (input === "u") u(prompt("Which element do you want to update [" + Object.keys(list) + "]?"))
 
   //create a new element in the list
   if(input === 'c' || input === 'create' ){

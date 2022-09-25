@@ -55,6 +55,7 @@ updateColumnPrompt += `[c] due date${newLine}`
 
 //function u (Update)
 const u = (itemToBeUpdated) => {
+  //comment by lucas
   let columnInput
   while (true) {
     console.log(updateColumnPrompt)

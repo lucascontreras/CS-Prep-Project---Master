@@ -10,27 +10,38 @@
       //Morgan
 //each element of the list would be an object within the list object
 
-//lucas commented 202209242046
+//features ideas:
+  //due date
+    //sort criteria
+  //alerts
+    //generate alerts when close to the due date
+  //categories
+    //sort list items by category
+  //priority levels
+    //sort list items by priority
+  //responsible
+    //assign item to a person
+
 ///basic structure of the list:
 const list = { 
   1 : {
-    text : 'Go to bed'
+    text : 'Go to bed',
+    category : 'home'
   },
   2 : {
-    text : 'Brush teeth'
+    text : 'Brush teeth',
+    category : 'home'
   }
 }
 
 //function u (Update)
 const u = () => {
   let itemToBeUpdated = prompt("Which element do you want to update [" + Object.keys(list) + "]?")
-  let newText = prompt("Enter the new text for the element " + itemToBeUpdated)
-  list[itemToBeUpdated]['text'] = newText
-  let result = "\r\n";
-  for (key in list) {
-    result += key + ": " + list[key]['text'] + "\r\n"
-  }
-  return result
+  list[itemToBeUpdated]['text'] = prompt("Enter the new text for the element " + itemToBeUpdated)
+  console.log("Item " + itemToBeUpdated + " updated")
+  // ↓ replace this with Queen's function (read):
+    console.table(list)
+  // ↑ replace this with Queen's function (read):
 }
 
 //create function
@@ -42,27 +53,48 @@ function c () {
   /////////////////
   let result = "\r\n";
   for (key in list) {
-    result += key + ": " + list[key]['text'] + "\r\n"
+    result += key + " | " + list[key]['text'] + "\r\n"
   }
   //insert queens function here
   return result;
 }
 
-//initial prompt to select the action to be performed
+//use this as you need in the prompts
 const newLine = "\r\n"
-console.log("Your to do list:")
-for (key in list) {
-  console.log(key + ": ", list[key]['text'])
-}
-console.log(newLine + "What do you want to do?" + newLine + "[c] Create: add a new element to the list" + newLine + "[r] Read: print all the elements of the list" + newLine + "[u] Update: modify an element of the list" + newLine + "[d] Delete: remove an element from the list" + newLine)
-const input = prompt("Enter your answer [c, r, u, d] here:")
 
-//update an element from the list
-if (input === "u") {
-  console.log("List has been updated:", u())
-}
-if(input === 'c' || input === 'create' ){
-  console.log('Item added',c())
-}
+//initial prompt
+let initialPrompt = newLine
+initialPrompt += "Select an action:" + newLine
+initialPrompt += "[c] Create: add a new element to the list" + newLine
+initialPrompt += "[r] Read: print all the elements of the list" + newLine
+initialPrompt += "[u] Update: modify an element of the list" + newLine
+initialPrompt += "[d] Delete: remove an element from the list" + newLine
 
-// delete an element from the list
+//index that will determine if the "Your to do list:" message will be displayed
+let i = 0;
+while (true) {
+  //only diplay this message the first time
+  if (!i) {
+    console.log("Your to do list:")
+    console.table(list)
+  }
+  
+  i++
+  
+  //initial prompt to select the action to be performed
+  console.log(initialPrompt)
+  
+  //determine operation to execute
+  const input = prompt("Enter your answer [c, r, u, d] here:")
+  
+  //update an element from the list
+  if (input === "u") u()
+
+  //create a new element in the list
+  if(input === 'c' || input === 'create' ){
+    console.log('Item added',c())
+  }
+  
+  // delete an element from the list
+
+}

@@ -4,7 +4,7 @@
       //Truman
     //read (print all the of the list)
       //Queen
-    //update (modify an element of the list)
+    //function to calculate days left until due date
       //Lucas
     //delete (removes an element)
       //Morgan
@@ -13,6 +13,7 @@
 //features ideas:
   //due date
     //sort criteria
+    //how many days left until due calculates (higher order function)
   //alerts
     //generate alerts when close to the due date
   //categories
@@ -43,7 +44,6 @@ const newLine = "\r\n"
 let initialPrompt = newLine
 initialPrompt += "Select an action:" + newLine
 initialPrompt += "[c] Create: add a new element to the list" + newLine
-initialPrompt += "[r] Read: print all the elements of the list" + newLine
 initialPrompt += "[u] Update: modify an element of the list" + newLine
 initialPrompt += "[d] Delete: remove an element from the list" + newLine
 
@@ -64,9 +64,7 @@ const u = (itemToBeUpdated) => {
   let columns = {a: 'text', b: 'category', c: 'due'}
   list[itemToBeUpdated][columns[columnInput]] = prompt(`Enter the new ${columns[columnInput]} for the element ${itemToBeUpdated}`)
   console.log("Item " + itemToBeUpdated + " updated")
-  // ↓ replace this with Queen's function (read):
     console.table(list)
-  // ↑ replace this with Queen's function (read):
 }
 
 //create function
@@ -97,7 +95,7 @@ while (true) {
   console.log(initialPrompt)
   
   //determine operation to execute
-  const input = prompt("Enter your answer [c, r, u, d] here")
+  const input = prompt("Enter your answer [c, u, d] here")
   
   //update an element from the list
   if (input === "u") u(prompt("Which element do you want to update [" + Object.keys(list) + "]?"))
